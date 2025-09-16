@@ -1,0 +1,14 @@
+{
+  "name": "recuerda-y-gana",
+  "version": "1.0.0",
+  "description": "Juego Recuerda y Gana para Railway",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^4.21.2",
+    "mysql2": "^3.15.0"
+  }
+}
