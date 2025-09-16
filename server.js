@@ -9,10 +9,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const db = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
+    host: process.env.MYSQLHOST || 'localhost',
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQLPASSWORD || '',
+    database: process.env.MYSQLDATABASE || 'juego',
+    port: process.env.MYSQLPORT || 3306
 });
 
 db.connect((err) => {
@@ -20,7 +21,7 @@ db.connect((err) => {
         console.error('Error de conexión a MySQL:', err);
         process.exit(1);
     } else {
-        console.log('Conectado a MySQL');
+        console.log('✅ Conectado a MySQL');
     }
 });
 
@@ -47,13 +48,13 @@ app.get('/resultados', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/resultados.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'resultados.html'));
+    res.sendFile(path.join(__dirname, 'public', 'resultados.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en puerto ${PORT}`);
+    console.log(`🚀 Servidor escuchando en puerto ${PORT}`);
 });
