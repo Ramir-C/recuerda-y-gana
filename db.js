@@ -1,13 +1,17 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2');
 
-const pool = mysql.createPool({
-    host: process.env.DB_HOST || 'mysql.railway.internal',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'pZzMEUFwkRoOKubOGzHZrgfxQKUjGdcn',
-    database: process.env.DB_NAME || 'railway',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+const connection = mysql.createConnection({
+  host: process.env.MYSQLHOST.replace(/^.*:/, ''), // fuerza quitar IPv6 si la da Railway
+  port: process.env.MYSQLPORT,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE
 });
 
-module.exports = pool;
+connection.connect((err) => {
+  if (err) {
+    console.error('Error de conexión a MySQL:', err);
+    return;
+  }
+  console.log('Conectado a la base de datos MySQL 🚀');
+});
