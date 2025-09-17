@@ -9,10 +9,10 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const db = mysql.createConnection({
-    host: process.env.MYSQLHOST || 'localhost',
+    host: process.env.MYSQLHOST || 'recuerda-y-gana.railway.internal',
     user: process.env.MYSQLUSER || 'root',
-    password: process.env.MYSQLPASSWORD || '',
-    database: process.env.MYSQLDATABASE || 'juego',
+    password: process.env.MYSQLPASSWORD || 'pZzMEUFwkRoOKubOGzHZrgfxQKUjGdcn',
+    database: process.env.MYSQLDATABASE || 'railway',
     port: process.env.MYSQLPORT || 3306
 });
 
