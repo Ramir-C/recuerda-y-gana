@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const db = mysql.createConnection({
-    host: process.env.MYSQLHOST || 'recuerda-y-gana.railway.internal',
+    host: process.env.MYSQLHOST || 'mysql.railway.internal',
     user: process.env.MYSQLUSER || 'root',
     password: process.env.MYSQLPASSWORD || 'pZzMEUFwkRoOKubOGzHZrgfxQKUjGdcn',
     database: process.env.MYSQLDATABASE || 'railway',
